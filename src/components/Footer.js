@@ -9,8 +9,9 @@ const Footer = () => {
         <section>
           <a
             className="btn btn-outline-light btn-floating m-1"
-            href="https://github.com/tttn13/repo/here"
+            href="https://github.com/tttn13"
             role="button"
+            target="_blank" rel="noopener noreferrer"
           >
             <FontAwesomeIcon icon={faGithub} />
           </a>
@@ -19,6 +20,7 @@ const Footer = () => {
             className="btn btn-outline-light btn-floating m-1"
             href="#!"
             role="button"
+            target="_blank" rel="noopener noreferrer"
           >
             <FontAwesomeIcon icon={faUser} />
           </a>
@@ -27,6 +29,7 @@ const Footer = () => {
             className="btn btn-outline-light btn-floating m-1"
             href="https://www.linkedin.com/in/thi-nguyen-1310/"
             role="button"
+            target="_blank" rel="noopener noreferrer"
           >
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
@@ -38,7 +41,8 @@ const Footer = () => {
         <a
           className="nav-link"
           style={{ fontWeight: "600" }}
-          href="https://github.com/tttn13/repo/here"
+          href="https://github.com/tttn13/sorting-visualizer"
+          target="_blank" rel="noopener noreferrer"
         >
           Source Code
         </a>
