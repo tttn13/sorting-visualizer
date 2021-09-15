@@ -32,9 +32,10 @@ footer {
 
 /* FRAME STARTS */
 .barsList {
-  padding: 1rem;
+  padding: 2rem;
   display: flex;
-  min-height: 40vh;
+  height: 50vh;
+  /* min-height: 40vh; */
   align-items: flex-end;
   flex-direction: row;
 }
