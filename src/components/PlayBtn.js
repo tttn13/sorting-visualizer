@@ -37,7 +37,7 @@ const PlayBtn = () => {
     <button
       type="button"
       id="startBtn"
-      className="btn btn-secondary"
+      className="btn btn-danger"
       onClick={() => {
         isPaused && handlePlayClick();
       }}
