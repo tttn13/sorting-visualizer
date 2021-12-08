@@ -1,34 +1,34 @@
-import React from 'react';
+import React from "react";
 import { useDispatch } from "react-redux";
-import { resetChartAsync, changeWorstCase, reverseChartAsync } from "../redux/chartSlice";
+import {
+  resetChartAsync,
+  reverseChartAsync,
+} from "../redux/chartSlice";
 
 const WorstCaseCheckBox = () => {
-    const dispatch = useDispatch();
-    
-    return (
-        <div className="form-check">
-            <label className="form-check-label" 
-            htmlFor="flexCheckDefault" 
-            >
-            <input 
-            className="form-check-input" 
-            type="checkbox" value="" 
-            id="flexCheckDefault" 
-            
-            onChange={(e) => {
-                if (e.target.checked) {
-                    dispatch(changeWorstCase({ worstCase: true }))
-                    dispatch(reverseChartAsync())
-                } else {
-                    dispatch(changeWorstCase({ worstCase: false }))
-                    dispatch(resetChartAsync())
-                }
-            }}
-            />
-                Worst Case
-            </label>
-        </div>
-    )
-}
+  const dispatch = useDispatch();
 
-export default WorstCaseCheckBox
+  const handleCheckBox = (e) => {
+    if (e.target.checked === true) {
+      dispatch(reverseChartAsync());
+    } else {
+      dispatch(resetChartAsync());
+    }
+  };
+
+  return (
+    <div className="form-check">
+      <label className="form-check-label" htmlFor="flexCheckDefault">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          id="flexCheckDefault"
+          onChange={(e) => handleCheckBox(e)}
+        />
+        Worst Case
+      </label>
+    </div>
+  );
+};
+
+export default WorstCaseCheckBox;

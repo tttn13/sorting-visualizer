@@ -7,7 +7,7 @@ export const selectPaused = (state) => state.chart.isPaused;
 export const selectSpeedOptions = (state) => state.chart.speedOptions;
 export const selectCurrentSpeed = (state) => state.chart.speed;
 export const selectNumOfBars = (state) => state.chart.numOfBars;
-export const selectNumOfBarsOptions = (state) =>
-  state.chart.numOfBarsOptions;
+export const selectNumOfBarsOptions = (state) => state.chart.numOfBarsOptions;
 export const selectOptionChange = (state) => state.chart.optionChanged;
 export const selectFinish = (state) => state.chart.finished;
+export const selectWorstCase = (state) => state.chart.worstCase;

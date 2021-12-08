@@ -5,6 +5,7 @@ import { changeNumOfBars, resetChartAsync } from "../redux/chartSlice";
 const NumOfBarsMenu = ({ numOfBars, numOfBarsOptions }) => {
   const dispatch = useDispatch();
   const [buttonText, setButtonText] = useState("Size")
+  
   return (
     <div className="dropdown">
       <button

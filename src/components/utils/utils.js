@@ -1,9 +1,9 @@
-import { bubbleSort } from "../algorithms/bubbleSort";
-import { insertionSort } from "../algorithms/insertionSort";
-import { selectionSort } from "../algorithms/selectionSort";
-import { heapSort } from "../algorithms/heapSort";
-import { mergeSort } from "../algorithms/mergeSort";
-import { quickSort } from "../algorithms/quickSort";
+import { bubbleSort } from "../../algorithms/bubbleSort";
+import { insertionSort } from "../../algorithms/insertionSort";
+import { selectionSort } from "../../algorithms/selectionSort";
+import { heapSort } from "../../algorithms/heapSort";
+import { mergeSort } from "../../algorithms/mergeSort";
+import { quickSort } from "../../algorithms/quickSort";
 
 export const generateBarChart = (numOfBars) => {
   let newBars = [];

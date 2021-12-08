@@ -5,6 +5,7 @@ import { changeAlgo, resetChartAsync } from "../redux/chartSlice";
 const AlgoMenu = ({ currentAlgo, algoOptions }) => {
   const dispatch = useDispatch();
   const [buttonText, setButtonText] = useState("Algorithm")
+
   return (
     <div className="dropdown">
       <button

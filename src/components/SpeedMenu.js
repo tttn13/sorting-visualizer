@@ -5,7 +5,6 @@ import { changeSpeed, resetChartAsync } from "../redux/chartSlice";
 const SpeedMenu = ({ speed, speedOptions }) => {
   const dispatch = useDispatch();
   const [buttonText, setButtonText] = useState("Speed")
-  
   return (
     <div className="dropdown">
       <button

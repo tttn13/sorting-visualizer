@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { generateBarChart, sortDescBars } from '../components/utils'
+import { generateBarChart, sortDescBars } from '../components/utils/utils'
+
 export const chartSlice = createSlice({
     name: 'chart',
     initialState: {
@@ -31,6 +32,9 @@ export const chartSlice = createSlice({
         },
         saveMovingBars: (state, action) => {
             state.movingBars = action.payload.movingBars
+        },
+        clearMovingBars: (state) => {
+            state.movingBars = []
         },
         changeSpeed: (state, action) => {
             state.speed = action.payload.speed;
@@ -99,6 +103,7 @@ export const chartSlice = createSlice({
 export const { 
     createList,
     saveMovingBars,
+    clearMovingBars,
     changeAlgo,
     changeNumOfBars,
     changeSpeed,
@@ -133,19 +138,22 @@ export const changeBarHeightAsync = (barsRange) => async (dispatch, getState) =>
 }
 
 export const resetChartAsync = () => async (dispatch, getState) => {
+    document.getElementById("flexCheckDefault").checked = false;
     const { numOfBars } = getState().chart
     dispatch(createList({ barsList: generateBarChart(numOfBars) }));
     dispatch(changeOption({ optionChanged: true }));
     dispatch(changePaused({ isPaused: true }));
+    dispatch(changeWorstCase({ worstCase: false }));
 }
 
 export const reverseChartAsync = () => async (dispatch, getState) => {
     const { numOfBars } = getState().chart 
     let newbars = generateBarChart(numOfBars)
     sortDescBars(newbars)
-    console.log("new desc bar", newbars)
     dispatch(createList({ barsList: newbars }));
     dispatch(changeOption({ optionChanged: true }));
     dispatch(changePaused({ isPaused: true }));
+    dispatch(changeWorstCase({ worstCase: true }));
 } 
+
 export default chartSlice.reducer

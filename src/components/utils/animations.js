@@ -1,5 +1,5 @@
-import { pause } from "./utils";
-import store from "./../redux/store";
+import { generateMovingBars, pause } from "./utils";
+import store from "../../redux/store";
 import {
   swappingBarsAsync,
   changeBarColorAsync,
@@ -7,15 +7,15 @@ import {
   changeBarHeightAsync,
   saveMovingBars,
   changePaused,
-  changeFinished,
-} from "../redux/chartSlice";
+  changeFinished, 
+  changeWorstCase
+} from "../../redux/chartSlice";
 
 const getState = () => {
   return store.getState().chart;
 };
 
 export const swappingMovingBars = async (speed, newMovingBars) => {
-  console.log("newMovingBars in swapping", newMovingBars)
   while (newMovingBars.length > 0) {
     let { isPaused, optionChanged } = getState();
     if (isPaused && optionChanged === false) {
@@ -84,6 +84,28 @@ const stopMoving = (barsToChange, newMovingBars) => {
   store.dispatch(saveMovingBars({ movingBars: newMovingBars }));
 };
 
+export const startSorting = async (
+  movingBars,
+  barsList,
+  currentAlgo,
+  algoOptions,
+  speed
+) => {
+  let newMovingBars;
+  if (movingBars.length > 0) {
+    newMovingBars = movingBars;
+  } else {
+    const barHeights = barsList.map((bar) => bar.height);
+    newMovingBars = generateMovingBars(currentAlgo, algoOptions, barHeights);
+  }
+
+  if (currentAlgo === 4) {
+    await animateBarsInRange(speed, newMovingBars);
+  } else {
+    await swappingMovingBars(speed, newMovingBars);
+  }
+};
+
 const finishSorting = (newMovingBars) => {
   if (newMovingBars.length === 0) {
     if (!getState().finished) {
@@ -91,6 +113,7 @@ const finishSorting = (newMovingBars) => {
       store.dispatch(changeAllBarColorAsync(getBarColor("SORTED")));
       store.dispatch(changeFinished({ finished: true }));
       store.dispatch(changePaused({ isPaused: true }));
+      store.dispatch(changeWorstCase({ worstCase: false }))
     }
   }
 };

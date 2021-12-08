@@ -6,16 +6,13 @@ import NumOfBarsMenu from "./NumOfBarsMenu";
 import WorstCaseCheckBox from "./WorstCaseCheckBox";
 import BarChart from "./BarChart";
 import AlgoExplained from "./AlgoExplained";
-import { generateBarChart, getAlgoName } from "./utils";
-import {
-  createList,
-} from "../redux/chartSlice";
+import { generateBarChart, getAlgoName } from "./utils/utils";
+import { createList } from "../redux/chartSlice";
 import {
   selectBarsList,
   selectNumOfBars,
   selectCurrentAlgo,
   selectAlgoOptions,
-  selectFinish,
   selectNumOfBarsOptions,
   selectCurrentSpeed,
   selectSpeedOptions,
@@ -23,9 +20,9 @@ import {
 } from "../redux/selectors";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartBar } from "@fortawesome/free-regular-svg-icons";
-import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
-import { useRandomize } from './hooks/useRandomize';
-import { usePlay, usePause } from './hooks/useControl';
+import RandomizeBtn from "./RandomizeBtn";
+import PlayBtn from "./PlayBtn";
+import PauseBtn from "./PauseBtn";
 
 const SortingVisualizer = () => {
   const dispatch = useDispatch();
@@ -36,17 +33,13 @@ const SortingVisualizer = () => {
   const speed = useSelector(selectCurrentSpeed);
   const speedOptions = useSelector(selectSpeedOptions);
   const barsList = useSelector(selectBarsList);
-  const isFinished = useSelector(selectFinish);
   const isPaused = useSelector(selectPaused);
+  const newBars = generateBarChart(numOfBars);
 
   useEffect(() => {
-    const newBars = generateBarChart(numOfBars);
     dispatch(createList({ barsList: newBars }));
   }, []);
 
-  const handleRandomizeBtn = useRandomize()
-  const handlePlayBtn = usePlay();
-  const handlePauseBtn = usePause()
   return (
     <div id="content">
       <nav
@@ -62,7 +55,6 @@ const SortingVisualizer = () => {
             window.scrollTo(0, 0);
           }}
         >
-          {" "}
           <FontAwesomeIcon icon={faChartBar} size="1x" />
           <b style={{ padding: "10px" }}>Sorting Visualizer</b>
         </a>
@@ -82,22 +74,11 @@ const SortingVisualizer = () => {
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
             <li className="nav-item active m-2">
-              <button
-                type="button"
-                id="randomizeBtn"
-                className="btn btn-outline-secondary"
-                onClick={()=> {
-                  if (isPaused === true) handleRandomizeBtn()
-                }}
-              >
-                Randomize
-              </button>
+              <RandomizeBtn />
             </li>
 
             <li className="nav-item m-2">
-              <AlgoMenu 
-              currentAlgo={currentAlgo} 
-              algoOptions={algoOptions} />
+              <AlgoMenu currentAlgo={currentAlgo} algoOptions={algoOptions} />
             </li>
 
             <li className="nav-item m-2 ">
@@ -112,31 +93,7 @@ const SortingVisualizer = () => {
             </li>
 
             <li className="nav-item m-2">
-              <button
-                type="button"
-                id="startBtn"
-                className="btn btn-secondary"                
-                onClick={() => {
-                  if (isPaused === true) handlePlayBtn()
-                }}
-              >
-                {" "}
-                <FontAwesomeIcon icon={faPlay} size="lg" />
-              </button>
-            </li>
-
-            <li className="nav-item m-2">
-              <button
-                type="button"
-                id="pauseBtn"
-                className="btn btn-danger"
-                onClick={() => {
-                  if (isFinished === false) handlePauseBtn()
-                }}
-              >
-                {" "}
-                <FontAwesomeIcon icon={faPause} size="lg" />
-              </button>
+              {isPaused ? <PlayBtn /> : <PauseBtn />}
             </li>
 
             <li className="nav-item m-2">
