@@ -35,7 +35,7 @@ const SortingVisualizer = () => {
   const barsList = useSelector(selectBarsList);
   const isPaused = useSelector(selectPaused);
   const newBars = generateBarChart(numOfBars);
-
+  
   useEffect(() => {
     dispatch(createList({ barsList: newBars }));
   }, []);

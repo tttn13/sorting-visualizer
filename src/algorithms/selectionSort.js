@@ -1,4 +1,4 @@
-import { swap } from "./helpers";
+import { swap } from "./_helpers";
 
 export const selectionSort = (arr) => {
   let movingBars = [];

@@ -1,4 +1,4 @@
-import { swap } from "./helpers";
+import { swap } from "./_helpers";
 
 export const quickSort = (barsArr) => {
   let movingBars = [];
@@ -45,26 +45,22 @@ export const QuickSortDesc = {
     <div>
       <p>
         <b>Quick Sort </b>
-        is an efficient, in-place sorting algorith that in practice is faster
-        than MergeSort and HeapSort. However, it is not a stable sorting
-        algorithm, meaning that the relative positioning of equal sort items is
-        not preserved.Quicksort is a divide and conquer algorithm. Quicksort
-        first divides a large array into two smaller sub-arrays: the low
-        elements and the high elements. Quicksort can then recursively sort the
-        sub-arrays. The steps are:
+        is an in-place, divide-and-conquer algorithm that can be faster
+        than MergeSort and HeapSort. It
+        works by dividing a large array into two smaller sub-array saccording to whether they are less than or greater than the pivot. 
+        The sub-arrays are recursively sorted. The steps are:
       </p>
       <ol>
         <li>
-          Pick an element, called a pivot, from the array. This is usually done
-          at random.
+          Pick an element, called a pivot, from the array.
         </li>
         <li>Move pivot element to the start of the array.</li>
         <li>
-          <em>Partitioning:</em> reorder the array so that all elements with
+          <em>Partitioning: </em> reorder the array so that all elements with
           values less than the pivot come before the pivot, while all elements
           with values greater than the pivot come after it (equal values can go
           either way). After this partitioning, the pivot is in its final
-          position. This is called the <em>partition</em> operation.
+          position.
         </li>
         <li>
           Recursively apply the above steps to the sub-array of elements with
@@ -72,10 +68,7 @@ export const QuickSortDesc = {
           greater values.
         </li>
       </ol>
-      <p>
-        The base case of the recursion is an array of size zero or one, which
-        are sorted by definition.
-      </p>
+    
     </div>
   ),
   worstCase: (

@@ -11,26 +11,22 @@ import {
   selectBarsList,
 } from "../redux/selectors";
 import { startSorting } from "./utils/animations";
-import {
-  changeFinished,
-  changeOption,
-  changePaused,
-} from "../redux/chartSlice";
+import { changeFinished, changeMenu, changePaused } from "../redux/chartSlice";
 
 const PlayBtn = () => {
   const dispatch = useDispatch();
   const isPaused = useSelector(selectPaused);
-  const movingBars = useSelector(selectMovingBars);
   const currentAlgo = useSelector(selectCurrentAlgo);
   const algoOptions = useSelector(selectAlgoOptions);
   const speed = useSelector(selectCurrentSpeed);
   const barsList = useSelector(selectBarsList);
+  const movingBars = useSelector(selectMovingBars).slice();
+
   const handlePlayClick = () => {
+    dispatch(changeMenu({ menuChanged: false }));
     dispatch(changeFinished({ finished: false }));
     dispatch(changePaused({ isPaused: false }));
-    dispatch(changeOption({ optionChanged: false }));
-    const newBars = movingBars.slice();
-    startSorting(newBars, barsList, currentAlgo, algoOptions, speed);
+    startSorting(movingBars, barsList, currentAlgo, algoOptions, speed);
   };
 
   return (

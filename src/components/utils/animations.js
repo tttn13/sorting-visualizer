@@ -7,8 +7,9 @@ import {
   changeBarHeightAsync,
   saveMovingBars,
   changePaused,
-  changeFinished, 
-  changeWorstCase
+  changeFinished,
+  changeWorstCase,
+   resetChartAsync, reverseChartAsync 
 } from "../../redux/chartSlice";
 
 const getState = () => {
@@ -17,15 +18,18 @@ const getState = () => {
 
 export const swappingMovingBars = async (speed, newMovingBars) => {
   while (newMovingBars.length > 0) {
-    let { isPaused, optionChanged } = getState();
-    if (isPaused && optionChanged === false) {
-      const currentStop = newMovingBars[0];
-      stopMoving([currentStop[0], currentStop[1]], newMovingBars);
+    let { isPaused, finished, menuChanged, worstCase } = getState();
+    if (menuChanged) {
+      (!worstCase)
+      ? store.dispatch(resetChartAsync())
+      : store.dispatch(reverseChartAsync())
       break;
-    }
-    if (isPaused && optionChanged === true) {
-      store.dispatch(saveMovingBars({ movingBars: [] }));
-      break;
+    } else {
+      if (isPaused && !finished) {
+        const currentStop = newMovingBars[0];
+        stopMoving([currentStop[0], currentStop[1]], newMovingBars);
+        break;
+      }
     }
 
     store.dispatch(changeAllBarColorAsync(getBarColor("NORMAL")));
@@ -36,7 +40,7 @@ export const swappingMovingBars = async (speed, newMovingBars) => {
     await pause(speed);
 
     if (barsAndStateInCheck[2] === true) {
-      console.log("we are  swapping");
+      console.log("we are swapping");
       store.dispatch(swappingBarsAsync(barsInCheck));
       await pause(speed);
     }
@@ -52,11 +56,18 @@ export const animateBarsInRange = async (speed, newMovingBars) => {
   console.log("animateBarsInRange");
   let prevRange = [];
   while (newMovingBars.length > 0) {
-    let { isPaused, optionChanged } = getState();
-    if (isPaused && optionChanged === false) {
-      // const currentStop = newMovingBars[0][3]
-      stopMoving(prevRange, newMovingBars);
+    let { isPaused, finished, menuChanged, worstCase } = getState();
+    if (menuChanged) {
+      (!worstCase)
+      ? store.dispatch(resetChartAsync())
+      : store.dispatch(reverseChartAsync())
       break;
+    } else {
+      if (isPaused && !finished) {
+      // const currentStop = newMovingBars[0][3]
+        stopMoving(prevRange, newMovingBars);
+        break;
+      }
     }
 
     store.dispatch(changeAllBarColorAsync(getBarColor("NORMAL")));
@@ -65,9 +76,7 @@ export const animateBarsInRange = async (speed, newMovingBars) => {
       await pause(speed);
 
       prevRange = newMovingBars[0][3];
-      store.dispatch(
-        changeBarColorAsync(newMovingBars[0][3], getBarColor("CURRENT"))
-      );
+      store.dispatch(changeBarColorAsync(newMovingBars[0][3], getBarColor("CURRENT")));
       await pause(speed);
     }
 
@@ -79,21 +88,21 @@ export const animateBarsInRange = async (speed, newMovingBars) => {
   finishSorting(newMovingBars);
 };
 
-const stopMoving = (barsToChange, newMovingBars) => {
+const stopMoving = async (barsToChange, newMovingBars) => {
   store.dispatch(changeBarColorAsync(barsToChange, getBarColor("CURRENT")));
   store.dispatch(saveMovingBars({ movingBars: newMovingBars }));
 };
 
 export const startSorting = async (
-  movingBars,
+  currentMovingBars,
   barsList,
   currentAlgo,
   algoOptions,
   speed
 ) => {
   let newMovingBars;
-  if (movingBars.length > 0) {
-    newMovingBars = movingBars;
+  if (currentMovingBars.length > 0) {
+    newMovingBars = currentMovingBars;
   } else {
     const barHeights = barsList.map((bar) => bar.height);
     newMovingBars = generateMovingBars(currentAlgo, algoOptions, barHeights);
@@ -107,18 +116,16 @@ export const startSorting = async (
 };
 
 const finishSorting = (newMovingBars) => {
-  if (newMovingBars.length === 0) {
-    if (!getState().finished) {
-      console.log("no more");
-      store.dispatch(changeAllBarColorAsync(getBarColor("SORTED")));
-      store.dispatch(changeFinished({ finished: true }));
-      store.dispatch(changePaused({ isPaused: true }));
-      store.dispatch(changeWorstCase({ worstCase: false }))
-    }
+  if (newMovingBars.length === 0 && !getState().finished) {
+    console.log("no more bars to move");
+    store.dispatch(changeAllBarColorAsync(getBarColor("SORTED")));
+    store.dispatch(changeFinished({ finished: true }));
+    store.dispatch(changePaused({ isPaused: true }));
+    store.dispatch(changeWorstCase({ worstCase: false }));
   }
 };
 
-const getBarColor = (color) => {
+export const getBarColor = (color) => {
   const barColors = getState().barTypes;
   if (color === "CURRENT") return barColors[1].CURRENT;
   if (color === "NORMAL") return barColors[0].NORMAL;

@@ -7,7 +7,6 @@ import {
 
 const WorstCaseCheckBox = () => {
   const dispatch = useDispatch();
-
   const handleCheckBox = (e) => {
     if (e.target.checked === true) {
       dispatch(reverseChartAsync());

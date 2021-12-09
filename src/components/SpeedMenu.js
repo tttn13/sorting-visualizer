@@ -4,7 +4,7 @@ import { changeSpeed, resetChartAsync } from "../redux/chartSlice";
 
 const SpeedMenu = ({ speed, speedOptions }) => {
   const dispatch = useDispatch();
-  const [buttonText, setButtonText] = useState("Speed")
+  const [buttonText, setButtonText] = useState("Speed");
   return (
     <div className="dropdown">
       <button
@@ -17,7 +17,15 @@ const SpeedMenu = ({ speed, speedOptions }) => {
         {buttonText}
       </button>
       <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><button className="dropdown-item disabled" tabIndex="-1" aria-disabled="true">Speed</button></li>
+        <li>
+          <button
+            className="dropdown-item disabled"
+            tabIndex="-1"
+            aria-disabled="true"
+          >
+            Speed
+          </button>
+        </li>
         {speedOptions
           ? speedOptions.map((item, idx) => (
               <li key={idx}>
@@ -27,11 +35,9 @@ const SpeedMenu = ({ speed, speedOptions }) => {
                   key={item}
                   value={item}
                   onClick={(e) => {
-                    setButtonText(e.target.value + "x")
-                    if (speed !== e.target.value) {
-                      dispatch(changeSpeed({ speed: e.target.value }));
-                      dispatch(resetChartAsync());
-                    }
+                    setButtonText(e.target.value + "x");
+                    dispatch(changeSpeed({ speed: e.target.value }));
+                    dispatch(resetChartAsync());
                   }}
                 >
                   {item}x

@@ -4,8 +4,8 @@ import { changeNumOfBars, resetChartAsync } from "../redux/chartSlice";
 
 const NumOfBarsMenu = ({ numOfBars, numOfBarsOptions }) => {
   const dispatch = useDispatch();
-  const [buttonText, setButtonText] = useState("Size")
-  
+  const [buttonText, setButtonText] = useState("Size");
+
   return (
     <div className="dropdown">
       <button
@@ -17,7 +17,15 @@ const NumOfBarsMenu = ({ numOfBars, numOfBarsOptions }) => {
         {buttonText}
       </button>
       <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li><button className="dropdown-item disabled" tabIndex="-1" aria-disabled="true">Size</button></li>
+        <li>
+          <button
+            className="dropdown-item disabled"
+            tabIndex="-1"
+            aria-disabled="true"
+          >
+            Size
+          </button>
+        </li>
         {numOfBarsOptions
           ? numOfBarsOptions.map((item, idx) => (
               <li key={idx}>
@@ -27,11 +35,9 @@ const NumOfBarsMenu = ({ numOfBars, numOfBarsOptions }) => {
                   key={item * 10}
                   value={item}
                   onClick={(e) => {
-                    setButtonText(e.target.value)
-                    if (numOfBars !== e.target.value) {
-                      dispatch(changeNumOfBars({ numOfBars: e.target.value }));
-                      dispatch(resetChartAsync());
-                    }
+                    setButtonText(e.target.value);
+                    dispatch(changeNumOfBars({ numOfBars: e.target.value }));
+                    dispatch(resetChartAsync());
                   }}
                 >
                   {item}

@@ -1,4 +1,4 @@
-import { swap } from "./helpers";
+import { swap } from "./_helpers";
 
 export const insertionSort = (arr) => {
   let movingBars = [];
@@ -27,14 +27,11 @@ export const InsertionSortDesc = {
   description: (
     <p>
       <b>Insertion Sort </b>
-      is a simple sorting algorithm that iterates through an array and at each
-      iteration it removes one element from the array, finds the location it
-      belongs to in the sorted list and inserts it there, repeating until no
-      elements remain in the unsorted list. It is an in-place, stable sorting
-      algorithm that is inefficient on large input arrays but works well for
-      data sets that are almost sorted. It is more efficient in practice
-      compared to other quadratic sorting algorithms like bubble sort and
-      selection sort.
+      is a simple sorting algorithm that builds the final sorted array (or list)
+      one item at a time. It is much less efficient on large lists than more
+      advanced algorithms such as quicksort, heapsort, or merge sort. 
+      Compared to other quadratic sorting algorithms like
+      bubble sort and selection sort, it is efficient for small data sets and those that are already substantially sorted.
     </p>
   ),
   worstCase: (

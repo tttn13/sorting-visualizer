@@ -1,7 +1,8 @@
   
 export const bubbleSort = (barsList) => {
-    let length = barsList.length;
     let movingBars = [];
+    let length = barsList.length;
+
     for (let num = 0; num < length - 1; num++) {
         for (let nextNum = 0; nextNum < length - num - 1; nextNum++) {
             let firstBar = barsList[nextNum]
@@ -10,8 +11,10 @@ export const bubbleSort = (barsList) => {
                 //swap firstBar and secondBar
                 barsList[nextNum] = secondBar
                 barsList[nextNum + 1] = firstBar
+                // true is swapped 
                 movingBars.push([nextNum, nextNum + 1, true])
             } else {
+                // false is not swapped 
                 movingBars.push([nextNum, nextNum + 1, false])
             }
         }

@@ -54,8 +54,9 @@ export const MergeSortDesc = {
     <div>
       <p>
         <b>Merge Sort </b>
-        is an efficient, stable sorting algorith that makes use of the divide
-        and conquer strategy. Conceptually the algorithm works as follows:
+        is an efficient, comparison-based sorting algorithm that makes use of the divide
+        and conquer strategy. Most implementations produce a stable sort, which means that the order of equal elements is the same in the input and output.  
+        Conceptually the algorithm works as follows:
       </p>
       <ol>
         <li>
