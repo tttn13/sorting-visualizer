@@ -1,9 +1,14 @@
+*,
+::after,
+::before {
+  box-sizing: content-box;
+}
+
 .App {
   text-align: center;
   position: relative;
   min-height: 100vh;
 }
-
 
 html,
 body {
@@ -18,9 +23,9 @@ body {
   background-color: rgb(13, 25, 41);
 }
 
-#content{
+#content {
   min-height: 100%;
-  padding-bottom: 9rem
+  padding-bottom: 9rem;
 }
 
 footer {
@@ -73,7 +78,11 @@ footer {
 
 .btn-outline-secondary:hover,
 .btn-outline-light:hover {
-  background-color: rgb(13, 25, 41)!important;
+  background-color: rgb(13, 25, 41) !important;
+}
+
+#navbar {
+  background-color: #6351ce;
 }
 
 #navbar-toggler {
@@ -143,7 +152,6 @@ h3 {
   padding: 1rem;
 }
 
-.form-check-label{
-  color: whitesmoke
+.form-check-label {
+  color: whitesmoke;
 }
-
