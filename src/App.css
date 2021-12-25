@@ -18,7 +18,7 @@ body {
   width: auto;
   display: flex;
   min-height: 100%;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   flex-direction: column;
   background-color: rgb(13, 25, 41);
 }
@@ -154,4 +154,13 @@ h3 {
 
 .form-check-label {
   color: whitesmoke;
+}
+
+.dropdown-item {
+  padding: 0;
+}
+
+.dropdown-menu {
+  padding: 0.6rem;
+  min-width: 3rem;
 }
