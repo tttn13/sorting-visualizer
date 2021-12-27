@@ -4,9 +4,7 @@
 
 Sorting Visualizer is an interactive application that helps you visualize and understand the most popular sorting algorithms in action. Sorting algorithm is an algorithm that puts elements of a list into an order.
 
-Supported algorithms: **Bubble Sort, Selection Sort, Merge Sort, Insertion Sort, Merge Sort, Quick Sort, Heap Sort**
-
-Click [here](https://tttn13.github.io/sorting-visualizer/) to try the app .
+Supported algorithms: **Bubble Sort, Selection Sort, Merge Sort, Insertion Sort, Merge Sort, Quick Sort, Heap Sort** . Click [here](https://tttn13.github.io/sorting-visualizer/) to try the app .
 
 ## Screenshots
 
