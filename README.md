@@ -26,11 +26,12 @@ Supported algorithms: **Bubble Sort, Selection Sort, Merge Sort, Insertion Sort,
 
 ![worstcase](https://github.com/tttn13/sorting-visualizer/blob/main/public/assets/worstcase.gif)
 
-## Usage
-
 In the project directory, you can run:
 
-### `npm start`
+```
+npm install
+npm start
+```
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
