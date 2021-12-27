@@ -26,6 +26,8 @@ Supported algorithms: **Bubble Sort, Selection Sort, Merge Sort, Insertion Sort,
 
 ![worstcase](https://github.com/tttn13/sorting-visualizer/blob/main/public/assets/worstcase.gif)
 
+## Usage
+
 In the project directory, you can run:
 
 ```
