@@ -18,7 +18,7 @@ Supported algorithms: **Bubble Sort, Selection Sort, Merge Sort, Insertion Sort,
 
 ## Features
 
-- User hit `Play` button to start sorting and `Pause` to stop the sort.
+- User select the algorithm, the speed and the number of bars, then user can hit `Play` button to start sorting and `Pause` to stop the sort.
 
 ![playdemo](https://github.com/tttn13/sorting-visualizer/blob/main/public/assets/play-demo.gif)
 
